@@ -310,10 +310,10 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
     if not os.path.exists("./build"):
         os.makedirs("build")
 
-    os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd --output_dir build --receipt 2")
-    os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd_appendkv --output_dir build --receipt 2")
-    os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd_splitkv --output_dir build --receipt 2")
-    os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d bwd --output_dir build --receipt 2")
+    #os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd --output_dir build --receipt 2")
+    #os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd_appendkv --output_dir build --receipt 2")
+    #os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d fwd_splitkv --output_dir build --receipt 2")
+    #os.system(f"{sys.executable} {ck_dir}/example/ck_tile/01_fmha/generate.py -d bwd --output_dir build --receipt 2")
 
     print("\n\ntorch.__version__  = {}\n\n".format(torch.__version__))
     TORCH_MAJOR = int(torch.__version__.split(".")[0])
@@ -393,9 +393,10 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
     }
 
     include_dirs = [
-        Path(this_dir) / "csrc" / "composable_kernel" / "include",
-        Path(this_dir) / "csrc" / "composable_kernel" / "library" / "include",
-        Path(this_dir) / "csrc" / "composable_kernel" / "example" / "ck_tile" / "01_fmha",
+        "/dockerx/composable_kernel/build/include",
+        "/dockerx/composable_kernel/build/library"
+        "/dockerx/composable_kernel/build/library/include",
+        "/dockerx/composable_kernel/build/example/ck_tile/01_fmha",
     ]
 
     ext_modules.append(
